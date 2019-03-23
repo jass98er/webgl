@@ -56,23 +56,23 @@ function setup(){
 function draw(programLocation){
     let gl = programLocation.gl;
     gl.clearColor(0.0, 0.0, 0.0, 1.0); 
-    gl.clearDepth(1.0);                 
-    gl.enable(gl.DEPTH_TEST);          
-    gl.depthFunc(gl.LEQUAL);  
+    
 
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.clear(gl.COLOR_BUFFER_BIT);
 
 
     
     const fieldOfView = 45 * Math.PI / 180;   // in radians
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
-    const zNear = 0.1;
+    const zNear = 0;
     const zFar = 100.0;
     let pmatrix = new Mat4();
     let mmatrix = new Mat4();
     pmatrix.perspective(fieldOfView,aspect,zNear,zFar);
+    mmatrix.translation(0,0,-6.0);
     const projectionMatrix = pmatrix.createFloatBuffer();
     const modelViewMatrix = mmatrix.createFloatBuffer();
+    console.log(modelViewMatrix);
     
     const numComponents = 2;  // pull out 2 values per iteration
     const type = gl.FLOAT;    // the data in the buffer is 32bit floats

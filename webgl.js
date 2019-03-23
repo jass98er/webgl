@@ -7,6 +7,7 @@ class WebGL{
         canvas.width = width;
         canvas.height = height;
         canvas.id = 'canvas';
+        document.body.appendChild(canvas);
         return canvas;
     }
     createGL(canvas){

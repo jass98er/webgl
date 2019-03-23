@@ -22,6 +22,14 @@ var Mat4 = /** @class */ (function () {
         this.matrix[15] = 1;
         return this.matrix;
     };
+    Mat4.prototype.translation = function (x, y, z) {
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        if (z === void 0) { z = 0; }
+        this.matrix[3] += x;
+        this.matrix[7] += y;
+        this.matrix[11] += z;
+    };
     Mat4.prototype.perspective = function (fovy, aspect, near, far) {
         var f = 1.0 / Math.tan(fovy / 2);
         var nf = 1.0 / (far - near);

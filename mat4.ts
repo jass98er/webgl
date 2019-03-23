@@ -25,6 +25,17 @@ class Mat4{
         this.matrix[15] = 1;
         return this.matrix
     }
+    translation(x:number=0,y:number=0,z:number=0){
+        
+            this.matrix[3] += x;
+        
+        
+            this.matrix[7] += y;
+        
+       
+            this.matrix[11] += z;
+        
+    }
     perspective(fovy, aspect, near, far){
         let f = 1.0 / Math.tan(fovy / 2);
         let nf = 1.0 / (far-near);
@@ -45,9 +56,6 @@ class Mat4{
         this.matrix[14] = 2 * (far * near) * nf;
         this.matrix[15] = 0;
         return this.matrix;
-    }
-    change(index,number){
-        this.matrix[index] = number;
     }
     createFloatBuffer(){
         return new Float32Array(this.matrix);

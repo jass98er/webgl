@@ -12,31 +12,14 @@ function setup(){
         1.0,-1.0,
     ];
 
-    //Test Vertext Shader Source
-    const vsSource = `
-    attribute vec4 aVertexPosition;
-
-    uniform mat4 uModelViewMatrix;
-    uniform mat4 uProjectionMatrix;
-
-    void main(){
-
-        gl_Position = uModelViewMatrix * uProjectionMatrix * aVertexPosition;
-    }
-`;
-    //Test Fragement Shader Source
-    const fsSource = `
-    void main() {
-      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    }
-  `;
-
-
+    const vsSource = document.getElementById('2d-vertex-shader').text;
+    const fsSource = document.getElementById('2d-fragment-shader').text;
 
     const canvas = webgl.createCanvas(window.innerWidth,window.innerHeight);
     const gl = webgl.createGL(canvas);
     const program = webgl.createProgram(gl,vsSource,fsSource);
     const buffer = webgl.createBuffer(gl,position);
+    
 
     return{
         gl:gl,
@@ -72,7 +55,6 @@ function draw(programLocation){
     mmatrix.translation(0,0,-6.0);
     const projectionMatrix = pmatrix.createFloatBuffer();
     const modelViewMatrix = mmatrix.createFloatBuffer();
-    console.log(modelViewMatrix);
     
     const numComponents = 2;  // pull out 2 values per iteration
     const type = gl.FLOAT;    // the data in the buffer is 32bit floats
@@ -116,5 +98,4 @@ function draw(programLocation){
 
 
 var obj = setup();
-
 draw(obj);

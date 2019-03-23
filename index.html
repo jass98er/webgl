@@ -9,6 +9,19 @@
     
 </head>
 <body>
+    <script id='2d-vertex-shader' type="notjs">
+        attribute vec4 aVertexPosition;
+        uniform mat4 uModelViewMatrix;
+        uniform mat4 uProjectionMatrix;
+        void main(){
+            gl_Position = aVertexPosition;
+        }
+    </script>
+    <script id="2d-fragment-shader" type="notjs">
+        void main(){
+            gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+        }
+    </script>
     <script type="text/javascript" src="webgl.js"></script>
     <script type="text/javascript" src="vec4.js"></script>
     <script type="text/javascript" src="mat4.js"></script>
